@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏详情 - IVOIncubator</title>
+<meta name="description" content="IVOIncubator 精品手机游戏详情页。">
+<!-- 如换正式域名,全局替换 URL 即可;game.js 会按游戏动态更新本页 meta -->
+<link rel="canonical" id="canonical" href="https://anliways.github.io/ivo/game.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IVOIncubator">
+<meta property="og:title" id="ogTitle" content="游戏详情 - IVOIncubator">
+<meta property="og:description" id="ogDesc" content="IVOIncubator 精品手机游戏。">
+<meta property="og:image" content="https://anliways.github.io/ivo/assets/og-image.png">
+<meta property="og:url" id="ogUrl" content="https://anliways.github.io/ivo/game.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="twTitle" content="游戏详情 - IVOIncubator">
+<meta name="twitter:description" id="twDesc" content="IVOIncubator 精品手机游戏。">
+<meta name="twitter:image" content="https://anliways.github.io/ivo/assets/og-image.png">
+<link rel="icon" type="image/png" href="assets/emoji.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/FusionPixel12-subset.woff2" crossorigin>
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+<!-- ===== 顶栏 ===== -->
+<header class="topbar">
+  <div class="shell topbar-in">
+    <a class="logo-link" href="index.html">
+      <img src="assets/logo.png" alt="IVOIncubator">
+    </a>
+    <nav class="topnav">
+      <a href="index.html" data-i18n="navBack">返回首页</a>
+      <a href="index.html#grid-top" data-i18n="navCharts">榜单</a>
+      <a href="index.html#community" data-i18n="navCommunity">社群</a>
+    </nav>
+    <div class="topbar-tools">
+      <a class="discord-top" href="#" data-link="discord" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="assets/discord.png" alt="Discord">
+      </a>
+      <button class="lang-btn" id="langBtn" type="button" aria-label="Switch language">
+        <span class="lang-zh">ZH</span><span class="lang-sep">/</span><span class="lang-en">EN</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="shell game-page">
+
+  <!-- ===== 顶部横幅 ===== -->
+  <section class="game-hero">
+    <div class="hero-media" id="heroMedia"></div>
+    <div class="hero-shade"></div>
+    <h1 class="hero-title" id="gameTitle"></h1>
+  </section>
+
+  <!-- ===== 游戏信息 ===== -->
+  <section class="info">
+    <div class="info-row">
+      <div class="info-icon"><img src="assets/emoji.png" alt="游戏图标" id="gameIcon"></div>
+      <div class="info-text">
+        <p><span data-i18n="gameLabel">游戏名称：</span><span id="gameName"></span></p>
+        <p><span data-i18n="platformLabel">平台：</span><span id="gamePlatform"></span></p>
+        <p class="rating" id="gameRating"></p>
+      </div>
+      <div class="info-actions">
+        <button type="button" class="btn btn-ghost" id="favBtn">♡ <span data-i18n="favBtn">收藏</span></button>
+        <a class="btn btn-join" href="#" data-link="discord" data-i18n="joinBtn" target="_blank" rel="noopener">一键加群</a>
+        <a class="btn btn-live" href="#" data-link="live" data-i18n="liveBtn" target="_blank" rel="noopener">跳转实况</a>
+        <button type="button" class="btn btn-ghost" id="shareBtn" data-i18n="shareBtn">分享</button>
+      </div>
+    </div>
+
+    <!-- 特性标签 -->
+    <ul class="feature-tags" id="featureTags"></ul>
+
+    <!-- 描述框 -->
+    <div class="desc" id="descBox"></div>
+
+    <!-- 截图 -->
+    <div class="shots" id="gameShots"></div>
+
+    <!-- 即将推出:上线通知订阅 -->
+    <section class="notify" id="notifyBox" hidden>
+      <h4 data-i18n="notifyTitle">上线通知我</h4>
+      <form class="notify-form" id="notifyForm">
+        <input type="email" id="notifyEmail" data-i18n-attr="notifyPh" placeholder="输入你的邮箱" required aria-label="邮箱">
+        <button type="submit" class="btn btn-blue" data-i18n="notifyBtn">通知我</button>
+      </form>
+      <p class="notify-done" id="notifyDone" hidden data-i18n="notifyDone">已登记!游戏上线时我们会第一时间通知你。</p>
+    </section>
+
+    <!-- 相关推荐 -->
+    <section class="related">
+      <div class="sec-head"><h2 data-i18n="relTitle">更多同类游戏</h2><span class="sec-line"></span></div>
+      <div class="rel-grid" id="relGrid"></div>
+    </section>
+
+    <!-- 更多游戏 -->
+    <div class="more-row">
+      <a class="btn btn-ghost" href="index.html#grid-top" data-i18n="moreGames">← 浏览更多游戏</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="IVOIncubator">
+        <p data-i18n="footAbout">精品手机游戏之家,曾被多家国际头部游戏媒体报道!我们致力于服务移动游戏玩家群体。</p>
+      </div>
+      <div>
+        <h4 data-i18n="footSupport">支持合作</h4>
+        <ul>
+          <li><a href="#" data-link="live" target="_blank" rel="noopener" data-i18n="footLive">游戏实况</a></li>
+          <li><a href="mailto:support@ivoIncubator.com" class="footer-mail">support@ivoIncubator.com</a></li>
+          <li><a href="#" data-i18n="footInvest">参与投资</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footFollow">关注我们</h4>
+        <ul>
+          <li><a href="#" data-link="discord" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="#" data-link="youtube" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" data-link="bilibili" target="_blank" rel="noopener">bilibili</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2026 IVOIncubator · <span data-i18n="footRights">精品手机游戏之家</span></p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" type="button" aria-label="Back to top">▲</button>
+
+<script src="data.js"></script>
+<script src="cursor.js"></script>
+<script src="analytics.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

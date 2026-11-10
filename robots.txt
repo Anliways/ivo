@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anliways.github.io/ivo/sitemap.xml

@@ -1,0 +1,151 @@
+/* =====================================================
+ * IVOIncubator · 游戏详情页样式
+ * ===================================================== */
+
+.game-page { padding-bottom: 40px; }
+
+/* ============ 顶部横幅 ============ */
+.game-hero {
+  position: relative;
+  margin-top: 22px;
+  height: 380px;
+  border: 2px solid var(--border);
+  background: var(--panel);
+  overflow: hidden;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.6);
+}
+.hero-media, .hero-media canvas, .hero-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.8) 88%);
+}
+.hero-title {
+  position: absolute;
+  left: 30px;
+  bottom: 22px;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.65);
+}
+
+/* ============ 信息区 ============ */
+.info { padding: 34px 0 10px; }
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.info-icon {
+  border: 2px solid #fff;
+  padding: 10px;
+  flex: none;
+  box-shadow: 4px 4px 0 #000;
+}
+.info-icon img { width: 47px; image-rendering: pixelated; } /* 94/2,整数倍缩放 */
+.info-text { font-size: 24px; line-height: 1.8; }
+.info-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-join { background: #fff; color: #1ec81e; }
+.btn-live { background: var(--pink); color: #fff; }
+
+/* ---- 特性标签 ---- */
+.feature-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+.feature-tags li {
+  font-size: 24px;
+  padding: 6px 12px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 #000;
+}
+.tag-source { background: #fff; color: #000; }
+.tag-cert   { background: #f5a300; color: #e01000; }
+.tag-cn     { background: #0a5cd8; color: #fff; }
+.tag-fan    { background: #fff; color: #0a8a0a; }
+.tag-ghost  { border: 2px solid #fff; color: #fff; }
+
+/* ---- 描述框 ---- */
+.desc {
+  margin-top: 26px;
+  border: 3px solid #fff;
+  padding: 30px 34px;
+  font-size: 24px;
+  line-height: 2;
+  letter-spacing: 1px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* ---- 截图 ---- */
+.shots {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.shots img, .shots canvas {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  image-rendering: pixelated;
+  border: 2px solid var(--border);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+}
+@media (max-width: 640px) {
+  .shots { grid-template-columns: 1fr; }
+}
+
+.more-row { margin-top: 30px; text-align: center; }
+
+/* ---- 相关推荐 ---- */
+.related { margin-top: 40px; }
+.related .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.related .sec-head h2 {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+.related .sec-line { flex: 1; height: 2px; background: var(--border); }
+.rel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) { .rel-grid { grid-template-columns: repeat(2, 1fr); } }
+.rel-grid .game-card { display: flex; flex-direction: column; }
+
+/* 详情页收藏按钮激活态 */
+#favBtn.on {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ============ 窄屏 ============ */
+@media (max-width: 640px) {
+  .game-hero { height: 240px; margin-top: 14px; }
+  .hero-title { left: 16px; bottom: 14px; }
+  .info-row { gap: 14px; }
+  .info-icon img { width: 47px; }
+  .info-actions { margin-left: 0; }
+  .desc { padding: 20px 18px; }
+}
