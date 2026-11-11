@@ -116,6 +116,39 @@
 
 .more-row { margin-top: 30px; text-align: center; }
 
+/* ---- 上一个 / 下一个游戏 ---- */
+.prevnext {
+  margin-top: 26px;
+  display: flex;
+  gap: 14px;
+}
+.prevnext a {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  background: var(--panel);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.6);
+  transition: border-color 0.12s steps(2, end), color 0.12s steps(2, end);
+}
+.prevnext a:hover { border-color: var(--brand); color: #fff; }
+.prevnext a span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prevnext a.pn-next { justify-content: flex-end; }
+@media (max-width: 640px) {
+  .prevnext { flex-direction: column; }
+}
+
 /* ---- 相关推荐 ---- */
 .related { margin-top: 40px; }
 .related .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }

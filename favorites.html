@@ -94,6 +94,20 @@
 <script src="cursor.js"></script>
 <script src="analytics.js"></script>
 <script src="favorites.js"></script>
-<script>if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js"));</script>
+<script>
+if ("serviceWorker" in navigator) {
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+  // 新版本 SW 接管时给个像素提示(首次注册不提示)
+  let hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!hadController) { hadController = true; return; }
+    const el = document.createElement("div");
+    el.className = "toast show";
+    el.textContent = document.documentElement.dataset.lang === "en" ? "✨ Updated to the latest version" : "✨ 已更新到最新版本";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2400);
+  });
+}
+</script>
 </body>
 </html>

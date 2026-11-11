@@ -18,6 +18,7 @@ const GAME_I18N = {
     joinBtn: "一键加群", liveBtn: "跳转实况",
     moreGames: "← 浏览更多游戏",
     relTitle: "更多同类游戏",
+    prevGame: "上一款", nextGame: "下一款",
     favBtn: "收藏", favDone: "已收藏",
     shareBtn: "分享", shareOk: "链接已复制",
     favAdd: "已加入收藏", favRemove: "已取消收藏",
@@ -35,6 +36,7 @@ const GAME_I18N = {
     joinBtn: "JOIN GROUP", liveBtn: "WATCH LIVE",
     moreGames: "← Browse more games",
     relTitle: "More like this",
+    prevGame: "Previous", nextGame: "Next",
     favBtn: "Favourite", favDone: "Favourited",
     shareBtn: "Share", shareOk: "Link copied",
     favAdd: "Added to favourites", favRemove: "Removed from favourites",
@@ -260,6 +262,14 @@ function renderGame() {
 
   // 收藏按钮状态
   refreshFavBtn();
+
+  // 上一个 / 下一个游戏(按 GAMES 顺序循环)
+  const idx = GAMES.indexOf(game);
+  const prev = GAMES[(idx - 1 + GAMES.length) % GAMES.length];
+  const next = GAMES[(idx + 1) % GAMES.length];
+  $("#prevNext").innerHTML = `
+    <a class="pn-prev" href="game.html?id=${prev.id}" aria-label="${t("prevGame")}"><span>← ${prev.title[LANG]}</span></a>
+    <a class="pn-next" href="game.html?id=${next.id}" aria-label="${t("nextGame")}"><span>${next.title[LANG]} →</span></a>`;
 
   // 特性标签
   $("#featureTags").innerHTML = detail.features.map((f) =>

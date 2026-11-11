@@ -149,6 +149,50 @@ const GAMES = [
     platforms: ["android", "ios"],
     hot: 88, fresh: false, free: false, soon: true,
   },
+  {
+    id: "star-caravan",
+    rating: 4.4,
+    title: { zh: "星轨商队", en: "Star Caravan" },
+    tagline: { zh: "带领商队穿越星海,在异星城镇间倒卖传说", en: "Lead a caravan across the star sea" },
+    genre: "rpg",
+    tags: ["rpg", "pixel"],
+    price: { type: "paid", amount: 25 },
+    platforms: ["android", "ios"],
+    hot: 83, fresh: true, free: false, soon: false,
+  },
+  {
+    id: "steam-chef",
+    rating: 4.2,
+    title: { zh: "蒸汽小厨", en: "Steam Chef" },
+    tagline: { zh: "在齿轮与蒸汽间掌勺,出餐速度就是一切", en: "Cook in a steampunk kitchen rush" },
+    genre: "sim",
+    tags: ["sim", "casual"],
+    price: { type: "paid", amount: 18 },
+    platforms: ["android"],
+    hot: 72, fresh: true, free: false, soon: false,
+  },
+  {
+    id: "waste-courier",
+    rating: 4.0,
+    title: { zh: "废土快递", en: "Wasteland Express" },
+    tagline: { zh: "末日之后,最后一封信也要送到", en: "Deliver the last letters after doomsday" },
+    genre: "survival",
+    tags: ["survival", "action"],
+    price: { type: "free" },
+    platforms: ["ios"],
+    hot: 77, fresh: false, free: true, soon: false,
+  },
+  {
+    id: "paper-dungeon",
+    rating: null,
+    title: { zh: "纸间地牢", en: "Paper Dungeon" },
+    tagline: { zh: "在折纸与涂鸦之间,翻页即换一层地牢", en: "A dungeon folded from paper" },
+    genre: "rpg",
+    tags: ["rpg", "pixel"],
+    price: { type: "soon" },
+    platforms: ["android", "ios"],
+    hot: 90, fresh: false, free: false, soon: true,
+  },
 ];
 
 /* 首页轮播(引用 GAMES 的 id) */
@@ -159,7 +203,8 @@ const PALETTE_BY_GAME = {
   "survival-hope": "nightGreen", "stardust-farm": "nightPurple", "abyss-echo": "deepBlue",
   "neko-mart": "sunset", "ninja-strike": "bloodRed", "rabbit-hole": "meadow",
   "neon-runner": "neonPink", "dungeon-caged": "brownDun", "mecha-era": "ironRed",
-  "kingdom-tales": "golden",
+  "kingdom-tales": "golden", "star-caravan": "aurora", "steam-chef": "candy",
+  "waste-courier": "rust", "paper-dungeon": "dusk",
 };
 
 /* 像素封面配色:sky 三段渐变 / 山三层 / 地面 / 点缀 */
@@ -174,4 +219,8 @@ const PALETTES = {
   ironRed:     { sky: ["#14161c", "#1f242e", "#2c333f"], hills: ["#1a1e26", "#12151b", "#0b0d11"], ground: "#080a0d", accent: "#ff6b4a", moon: "#ffb8a0", stars: true },
   brownDun:    { sky: ["#1c130c", "#2c1e12", "#3f2d1a"], hills: ["#20150c", "#150d08", "#0d0805"], ground: "#0a0604", accent: "#d99c4f", moon: "#ffe8c4", stars: true },
   neonPink:    { sky: ["#12081f", "#200f38", "#331551"], hills: ["#1b0c30", "#120820", "#0a0413"], ground: "#070310", accent: "#ff2ea6", moon: "#ffb8e8", stars: true },
+  aurora:      { sky: ["#04121a", "#0a2733", "#123f4a"], hills: ["#0a2028", "#06161c", "#030c10"], ground: "#02090c", accent: "#4be3c8", moon: "#d8fff4", stars: true },
+  candy:       { sky: ["#2a0f2e", "#57164a", "#8f2d5e"], hills: ["#3a1236", "#280d24", "#190816"], ground: "#12050f", accent: "#ff8ac2", moon: "#ffe0f0", stars: false },
+  rust:        { sky: ["#1c0f08", "#361a0d", "#54290f"], hills: ["#2a1409", "#1c0d05", "#100702"], ground: "#0a0402", accent: "#ff9d4d", moon: "#ffd9ad", stars: true },
+  dusk:        { sky: ["#14121d", "#211d30", "#312b47"], hills: ["#1c1828", "#130f1c", "#0b0812"], ground: "#070509", accent: "#b9a7ff", moon: "#e8e2ff", stars: true },
 };
