@@ -125,7 +125,7 @@ const GAMES = [
     tags: ["rpg", "pixel"],
     price: { type: "paid", amount: 15 },
     platforms: ["android", "ios"],
-    hot: 81, fresh: false, free: false, soon: false,
+    hot: 81, fresh: true, free: false, soon: false,
   },
   {
     id: "mecha-era",
