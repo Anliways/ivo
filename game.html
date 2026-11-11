@@ -18,6 +18,9 @@
 <meta name="twitter:description" id="twDesc" content="IVOIncubator 精品手机游戏。">
 <meta name="twitter:image" content="https://anliways.github.io/ivo/assets/og-image.png">
 <link rel="icon" type="image/png" href="assets/emoji.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#08080a">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 <link rel="preload" as="font" type="font/woff2" href="assets/FusionPixel12-subset.woff2" crossorigin>
 <link rel="stylesheet" href="common.css">
 <link rel="stylesheet" href="home.css">
@@ -37,6 +40,7 @@
       <a href="index.html#community" data-i18n="navCommunity">社群</a>
     </nav>
     <div class="topbar-tools">
+      <a class="fav-link" href="favorites.html" aria-label="我的收藏" data-i18n-aria="favTitle">♥<b class="fav-badge" data-fav-badge>0</b></a>
       <a class="discord-top" href="#" data-link="discord" target="_blank" rel="noopener" aria-label="Discord">
         <img src="assets/discord.png" alt="Discord">
       </a>
@@ -141,5 +145,6 @@
 <script src="cursor.js"></script>
 <script src="analytics.js"></script>
 <script src="game.js"></script>
+<script>if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js"));</script>
 </body>
 </html>

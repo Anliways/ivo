@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的收藏 - IVOIncubator</title>
+<meta name="description" content="我在 IVOIncubator 收藏的手机游戏清单。">
+<!-- 收藏数据只存在本地浏览器,不进搜索引擎索引 -->
+<meta name="robots" content="noindex, follow">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#08080a">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="icon" type="image/png" href="assets/emoji.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/FusionPixel12-subset.woff2" crossorigin>
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="favorites.css">
+</head>
+<body>
+
+<!-- ===== 顶栏 ===== -->
+<header class="topbar">
+  <div class="shell topbar-in">
+    <a class="logo-link" href="index.html">
+      <img src="assets/logo.png" alt="IVOIncubator">
+    </a>
+    <nav class="topnav">
+      <a href="index.html" data-i18n="navDiscover">发现</a>
+      <a href="index.html#grid-top" data-i18n="navCharts">榜单</a>
+      <a href="index.html#community" data-i18n="navCommunity">社群</a>
+      <a href="favorites.html" class="active" data-i18n="navFavs">我的收藏</a>
+    </nav>
+    <div class="topbar-tools">
+      <a class="fav-link active" href="favorites.html" aria-label="我的收藏" data-i18n-aria="navFavs">♥<b class="fav-badge" data-fav-badge>0</b></a>
+      <button class="lang-btn" id="langBtn" type="button" aria-label="Switch language">
+        <span class="lang-zh">ZH</span><span class="lang-sep">/</span><span class="lang-en">EN</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="shell favs-page">
+
+  <section class="favs-head">
+    <h1 data-i18n="favTitle">我的收藏</h1>
+    <span class="fav-total" id="favTotal">♥ 0</span>
+    <button type="button" class="btn btn-ghost btn-sm" id="clearBtn" hidden data-i18n="favClear">清空收藏</button>
+  </section>
+  <p class="favs-hint" data-i18n="favHint">点击卡片右上角 ♥ 取消收藏</p>
+
+  <div class="game-grid" id="favGrid"></div>
+
+  <div class="favs-empty" id="favsEmpty" hidden>
+    <div class="favs-empty-icon">🎮</div>
+    <h2 data-i18n="favEmpty">还没有收藏任何游戏</h2>
+    <p data-i18n="favEmptyHint">去首页逛逛,点卡片右上角的 ♡ 把喜欢的游戏收进来!</p>
+    <a class="btn btn-blue" href="index.html#grid-top" data-i18n="favGo">去发现游戏</a>
+  </div>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="IVOIncubator">
+        <p data-i18n="footAbout">精品手机游戏之家,曾被多家国际头部游戏媒体报道!我们致力于服务移动游戏玩家群体。</p>
+      </div>
+      <div>
+        <h4 data-i18n="footSupport">支持合作</h4>
+        <ul>
+          <li><a href="#" data-link="live" target="_blank" rel="noopener" data-i18n="footLive">游戏实况</a></li>
+          <li><a href="mailto:support@ivoIncubator.com" class="footer-mail">support@ivoIncubator.com</a></li>
+          <li><a href="#" data-i18n="footInvest">参与投资</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footFollow">关注我们</h4>
+        <ul>
+          <li><a href="#" data-link="discord" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="#" data-link="youtube" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" data-link="bilibili" target="_blank" rel="noopener">bilibili</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2026 IVOIncubator · <span data-i18n="footRights">精品手机游戏之家</span></p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" type="button" aria-label="Back to top" data-i18n-aria="backTop">▲</button>
+
+<script src="data.js"></script>
+<script src="cursor.js"></script>
+<script src="analytics.js"></script>
+<script src="favorites.js"></script>
+<script>if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js"));</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+/* =====================================================
+ * IVOIncubator · 收藏夹页
+ * ===================================================== */
+
+/* 只覆盖纵向内边距;横向留给 .shell(避免简写把 14/24px 横向内边距清零) */
+.favs-page { padding-top: 34px; padding-bottom: 60px; }
+
+.favs-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.favs-head h1 {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+.fav-total {
+  font-size: 24px;
+  color: var(--red);
+  letter-spacing: 1px;
+}
+.btn-sm { padding: 6px 14px; margin-left: auto; }
+
+.favs-hint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+/* 收藏网格与首页一致;窄屏两列由 home.css 的 .game-grid 规则负责 */
+.favs-page .game-grid { margin-top: 22px; }
+
+/* 空状态 */
+.favs-empty {
+  margin-top: 30px;
+  padding: 80px 20px;
+  text-align: center;
+  border: 2px dashed var(--border);
+  background: rgba(16, 16, 20, 0.5);
+}
+.favs-empty-icon { font-size: 56px; }
+.favs-empty h2 {
+  margin-top: 18px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+.favs-empty p {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+.favs-empty .btn { margin-top: 24px; }
+
+@media (max-width: 640px) {
+  .favs-page { padding-top: 22px; padding-bottom: 44px; }
+  .favs-head h1 { font-size: 24px; }
+  .fav-total { font-size: 12px; }
+  .favs-empty { padding: 56px 14px; }
+}

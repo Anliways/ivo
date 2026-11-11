@@ -18,6 +18,9 @@
 <meta name="twitter:description" content="发现优质手机游戏:僵尸生存、模拟经营、像素冒险。">
 <meta name="twitter:image" content="https://anliways.github.io/ivo/assets/og-image.png">
 <link rel="icon" type="image/png" href="assets/emoji.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#08080a">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 <!-- 首屏关键资源预加载 -->
 <link rel="preload" as="font" type="font/woff2" href="assets/FusionPixel12-subset.woff2" crossorigin>
 <link rel="preload" as="image" href="assets/shot-left.jpg">
@@ -43,6 +46,7 @@
       <a href="#footer" data-i18n="navAbout">关于</a>
     </nav>
     <div class="topbar-tools">
+      <a class="fav-link" href="favorites.html" aria-label="我的收藏" data-i18n-aria="favTitle">♥<b class="fav-badge" data-fav-badge>0</b></a>
       <a class="discord-top" href="#" data-link="discord" target="_blank" rel="noopener" aria-label="Discord">
         <img src="assets/discord.png" alt="Discord">
       </a>
@@ -178,5 +182,6 @@
 <script src="cursor.js"></script>
 <script src="analytics.js"></script>
 <script src="home.js"></script>
+<script>if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js"));</script>
 </body>
 </html>

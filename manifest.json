@@ -1,0 +1,16 @@
+{
+  "name": "IVOIncubator - 精品手机游戏之家",
+  "short_name": "IVOIncubator",
+  "description": "发现、收藏、分享精品手机游戏:僵尸生存、模拟经营、像素冒险。",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -307,6 +307,8 @@ function refreshFavBtn() {
   btn.classList.toggle("on", on);
   btn.childNodes[0].textContent = on ? "♥ " : "♡ ";
   btn.querySelector("span").textContent = on ? t("favDone") : t("favBtn");
+  // 同步顶栏收藏角标
+  document.querySelectorAll("[data-fav-badge]").forEach((b) => { b.textContent = FAVS.length; });
 }
 
 function renderRelated() {

@@ -354,6 +354,8 @@ function renderFresh() {
 /* ---- 侧栏收藏面板 ---- */
 function renderFavPanel() {
   $("#favCount").textContent = "♥ " + FAVS.length;
+  // 同步顶栏收藏角标
+  document.querySelectorAll("[data-fav-badge]").forEach((b) => { b.textContent = FAVS.length; });
   $("#favOnlyBtn").classList.toggle("active", state.favOnly);
 }
 
