@@ -12,6 +12,7 @@ const FAV_I18N = {
     favEmpty: "还没有收藏任何游戏",
     favEmptyHint: "去首页逛逛,点卡片右上角的 ♡ 把喜欢的游戏收进来!",
     favGo: "去发现游戏", favClear: "清空收藏", favClearConfirm: "确定要清空全部收藏吗?",
+    sortAdded: "按收藏顺序", sortRating: "评分优先",
     favAdd: "已加入收藏", favRemove: "已取消收藏",
     priceFreeShort: "免费", priceSoonShort: "敬请期待",
     platAndroid: "安卓", platIos: "iOS", backTop: "返回顶部",
@@ -25,6 +26,7 @@ const FAV_I18N = {
     favEmpty: "No favourites yet",
     favEmptyHint: "Browse the homepage and tap ♡ on a card to save a game!",
     favGo: "Discover games", favClear: "Clear all", favClearConfirm: "Clear all favourites?",
+    sortAdded: "Order added", sortRating: "Top rated",
     favAdd: "Added to favourites", favRemove: "Removed from favourites",
     priceFreeShort: "Free", priceSoonShort: "Coming Soon",
     platAndroid: "Android", platIos: "iOS", backTop: "Back to top",
@@ -189,8 +191,12 @@ function cardHTML(g) {
     </a>`;
 }
 
+let sortBy = "added";
+
 function render() {
-  const list = GAMES.filter((g) => FAVS.includes(g.id));
+  // 默认按真实收藏顺序(ivo-favs 的 push 顺序),评分排序为稳定次序回退
+  let list = FAVS.map((id) => GAMES.find((g) => g.id === id)).filter(Boolean);
+  if (sortBy === "rating") list = [...list].sort((a, b) => (b.rating || 0) - (a.rating || 0));
   $("#favGrid").innerHTML = list.map(cardHTML).join("");
   $("#favGrid").querySelectorAll("canvas[data-pal]").forEach((c) => {
     pixelCover(c, parseInt(c.dataset.seed, 10) || 1, c.dataset.pal);
@@ -229,6 +235,16 @@ document.addEventListener("click", (e) => {
     }
     return;
   }
+});
+
+/* 排序切换 */
+$("#favSort").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-sort]");
+  if (!btn) return;
+  sortBy = btn.dataset.sort;
+  document.querySelectorAll("#favSort .chip").forEach((c) =>
+    c.classList.toggle("active", c === btn));
+  render();
 });
 
 /* 清空收藏 */

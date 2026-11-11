@@ -30,8 +30,15 @@
   letter-spacing: 1px;
 }
 
+/* 排序 chips */
+.fav-sort {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+}
+
 /* 收藏网格与首页一致;窄屏两列由 home.css 的 .game-grid 规则负责 */
-.favs-page .game-grid { margin-top: 22px; }
+.favs-page .game-grid { margin-top: 18px; }
 
 /* 空状态 */
 .favs-empty {

@@ -295,6 +295,10 @@ function renderGame() {
       shots.appendChild(c);
     });
   }
+  // 截图点击放大(灯箱)
+  [...shots.children].forEach((el) => {
+    el.addEventListener("click", () => openLightbox(el));
+  });
 
   // 即将推出的游戏:显示上线通知订阅
   const notifyBox = $("#notifyBox");
@@ -311,6 +315,41 @@ function renderGame() {
 }
 
 /* ---------- 收藏 / 分享 / 相关推荐 ---------- */
+/* 截图灯箱:overlay 只建一次;canvas 场景图在灯箱里原样重绘 */
+function openLightbox(node) {
+  let lb = document.querySelector(".lightbox");
+  if (!lb) {
+    lb = document.createElement("div");
+    lb.className = "lightbox";
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) lb.classList.remove("show");
+    });
+    document.body.appendChild(lb);
+  }
+  lb.innerHTML = "";
+  let view;
+  if (node.tagName === "CANVAS") {
+    view = document.createElement("canvas");
+    view.width = node.width;
+    view.height = node.height;
+    view.getContext("2d").drawImage(node, 0, 0);
+  } else {
+    view = document.createElement("img");
+    view.src = node.src;
+    view.alt = node.alt || "";
+  }
+  view.className = "lightbox-view";
+  lb.appendChild(view);
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "lightbox-close";
+  close.textContent = "✕";
+  close.setAttribute("aria-label", LANG === "zh" ? "关闭" : "Close");
+  close.addEventListener("click", () => lb.classList.remove("show"));
+  lb.appendChild(close);
+  lb.classList.add("show");
+}
+
 function refreshFavBtn() {
   const btn = document.getElementById("favBtn");
   const on = FAVS.includes(game.id);

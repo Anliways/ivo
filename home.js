@@ -326,9 +326,16 @@ function filteredGames() {
   if (state.tag) list = list.filter((g) => g.tags.includes(state.tag));
   if (state.search) {
     const q = state.search.toLowerCase();
-    list = list.filter((g) =>
-      g.title.zh.toLowerCase().includes(q) || g.title.en.toLowerCase().includes(q) ||
-      g.tagline.zh.includes(q) || g.tagline.en.toLowerCase().includes(q));
+    list = list.filter((g) => {
+      // 标题/简介之外,标签与类型的中英文名也参与匹配(如搜"像素"或"rogue")
+      const hay = [
+        g.title.zh, g.title.en, g.tagline.zh, g.tagline.en,
+        ...g.tags.map((k) => (TAG_LABEL[k] || {}).zh || ""),
+        ...g.tags.map((k) => (TAG_LABEL[k] || {}).en || ""),
+        g.genre,
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
   }
   return list;
 }
