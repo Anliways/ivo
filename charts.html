@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏榜单 - IVOIncubator</title>
+<meta name="description" content="IVOIncubator 手机游戏榜单:热门榜、评分榜、新游榜、免费榜,发现值得玩的精品手机游戏。">
+<!-- 如换正式域名,全局替换 URL 即可 -->
+<link rel="canonical" href="https://anliways.github.io/ivo/charts.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IVOIncubator">
+<meta property="og:title" content="游戏榜单 - IVOIncubator">
+<meta property="og:description" content="热门榜、评分榜、新游榜、免费榜——发现值得玩的精品手机游戏。">
+<meta property="og:image" content="https://anliways.github.io/ivo/assets/og-image.png">
+<meta property="og:url" content="https://anliways.github.io/ivo/charts.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="游戏榜单 - IVOIncubator">
+<meta name="twitter:description" content="热门榜、评分榜、新游榜、免费榜——发现值得玩的精品手机游戏。">
+<meta name="twitter:image" content="https://anliways.github.io/ivo/assets/og-image.png">
+<link rel="icon" type="image/png" href="assets/emoji.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#08080a">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/FusionPixel12-subset.woff2" crossorigin>
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="charts.css">
+</head>
+<body>
+
+<!-- ===== 顶栏 ===== -->
+<header class="topbar">
+  <div class="shell topbar-in">
+    <a class="logo-link" href="index.html">
+      <img src="assets/logo.png" alt="IVOIncubator">
+    </a>
+    <nav class="topnav">
+      <a href="index.html" data-i18n="navDiscover">发现</a>
+      <a href="charts.html" class="active" data-i18n="navCharts">榜单</a>
+      <a href="index.html#community" data-i18n="navCommunity">社群</a>
+      <a href="favorites.html" data-i18n="navFavs">我的收藏</a>
+    </nav>
+    <div class="topbar-tools">
+      <a class="fav-link" href="favorites.html" aria-label="我的收藏" data-i18n-aria="navFavs">♥<b class="fav-badge" data-fav-badge>0</b></a>
+      <a class="discord-top" href="#" data-link="discord" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="assets/discord.png" alt="Discord">
+      </a>
+      <button class="lang-btn" id="langBtn" type="button" aria-label="Switch language">
+        <span class="lang-zh">ZH</span><span class="lang-sep">/</span><span class="lang-en">EN</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="shell charts-page">
+
+  <section class="charts-head">
+    <h1 data-i18n="chartTitle">游戏榜单</h1>
+    <p class="charts-sub" data-i18n="chartSub">按玩家热度与评分实时排序,点击查看游戏详情</p>
+  </section>
+
+  <nav class="chart-tabs" id="chartTabs" role="tablist" aria-label="榜单切换"></nav>
+
+  <div class="chart-list" id="chartList"></div>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="IVOIncubator">
+        <p data-i18n="footAbout">精品手机游戏之家,曾被多家国际头部游戏媒体报道!我们致力于服务移动游戏玩家群体。</p>
+      </div>
+      <div>
+        <h4 data-i18n="footSupport">支持合作</h4>
+        <ul>
+          <li><a href="#" data-link="live" target="_blank" rel="noopener" data-i18n="footLive">游戏实况</a></li>
+          <li><a href="mailto:support@ivoIncubator.com" class="footer-mail">support@ivoIncubator.com</a></li>
+          <li><a href="#" data-i18n="footInvest">参与投资</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footFollow">关注我们</h4>
+        <ul>
+          <li><a href="#" data-link="discord" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="#" data-link="youtube" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#" data-link="bilibili" target="_blank" rel="noopener">bilibili</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2026 IVOIncubator · <span data-i18n="footRights">精品手机游戏之家</span></p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" type="button" aria-label="Back to top" data-i18n-aria="backTop">▲</button>
+
+<script src="data.js"></script>
+<script src="cursor.js"></script>
+<script src="analytics.js"></script>
+<script src="charts.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+  // 新版本 SW 接管时给个像素提示(首次注册不提示)
+  let hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!hadController) { hadController = true; return; }
+    const el = document.createElement("div");
+    el.className = "toast show";
+    el.textContent = document.documentElement.dataset.lang === "en" ? "✨ Updated to the latest version" : "✨ 已更新到最新版本";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2400);
+  });
+}
+</script>
+</body>
+</html>
