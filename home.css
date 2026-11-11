@@ -205,11 +205,12 @@
 .game-card .card-meta { display: flex; gap: 6px; flex-wrap: wrap; }
 
 /* ============ 侧栏 ============ */
-.side-col { display: flex; flex-direction: column; gap: 18px; }
+/* 侧栏节奏整体收紧:面板总高尽量贴近 2 行卡片网格,避免主列下方出现大段空白 */
+.side-col { display: flex; flex-direction: column; gap: 14px; }
 .panel {
   background: var(--panel);
   border: 2px solid var(--border);
-  padding: 16px;
+  padding: 14px;
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.55);
 }
 .panel h3 {
@@ -217,7 +218,7 @@
   font-weight: 400;
   letter-spacing: 2px;
   color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .filter-group { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -230,7 +231,7 @@
   line-height: 1.9;
   color: var(--text-dim);
   letter-spacing: 1px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .btn-block { display: block; text-align: center; width: 100%; }
 
@@ -243,7 +244,7 @@
 }
 #favOnlyBtn { display: block; width: 100%; text-align: center; }
 .fav-hint {
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 12px;
   color: var(--text-dim);
   line-height: 1.9;
@@ -251,7 +252,7 @@
 }
 
 /* ============ 最新上架 ============ */
-.fresh-sec { margin-top: 34px; }
+.fresh-sec { margin-top: 26px; }
 .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
 .sec-head h2 {
   font-size: 24px;
@@ -307,4 +308,11 @@
   .slide-info { left: 16px; right: 16px; bottom: 16px; }
   .car-btn { display: none; }
   .fresh-row { grid-auto-columns: 180px; }
+}
+
+/* ============ 大屏(≥1440):放宽容器,吃满宽屏而不失焦 ============ */
+@media (min-width: 1440px) {
+  .shell { max-width: 1440px; }
+  .slides { height: 460px; }
+  .fresh-row { grid-auto-columns: 240px; }
 }
