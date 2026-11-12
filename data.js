@@ -150,6 +150,7 @@ const GAMES = [
     tags: ["action", "pixel"],
     price: { type: "free" },
     platforms: ["android"],
+    demo: "dodge",
     hot: 64, fresh: true, free: true, soon: false,
   },
   {
@@ -274,6 +275,7 @@ const GAMES = [
     tags: ["action", "pixel"],
     price: { type: "paid", amount: 12 },
     platforms: ["android", "ios"],
+    demo: "dodge",
     hot: 79, fresh: true, free: false, soon: false,
   },
   {

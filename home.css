@@ -183,6 +183,14 @@
   image-rendering: pixelated;
 }
 .game-card .cover .pill { position: absolute; left: 8px; bottom: 8px; }
+/* 可试玩角标(封面右下) */
+.game-card .cover .pill-demo {
+  position: absolute;
+  left: auto;
+  right: 8px;
+  bottom: 8px;
+  background: var(--brand);
+}
 .game-card .card-body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .game-card .card-title {
   font-size: 24px;

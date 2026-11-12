@@ -214,9 +214,10 @@ function cardHTML(g) {
   const rating = g.rating
     ? `<span class="rating">★ <span class="num">${g.rating.toFixed(1)}</span></span>` : "";
   const isNew = g.fresh && !g.soon ? `<span class="pill-new">${LANG === "zh" ? "新游戏" : "NEW"}</span>` : "";
+  const demoPill = g.demo ? `<span class="pill pill-demo">${LANG === "zh" ? "可试玩" : "DEMO"}</span>` : "";
   return `
     <a class="game-card" href="game.html?id=${g.id}" data-id="${g.id}">
-      <div class="cover"><canvas data-seed="${g.hot}" data-pal="${pal}" role="img" aria-label="${g.title[LANG]} ${LANG === "zh" ? "像素封面" : "pixel cover"}"></canvas><span class="pill ${info.cls}">${info.text}</span>${isNew}<button type="button" class="fav-btn ${fav ? "on" : ""}" data-fav="${g.id}" aria-label="favourite">${fav ? "♥" : "♡"}</button></div>
+      <div class="cover"><canvas data-seed="${g.hot}" data-pal="${pal}" role="img" aria-label="${g.title[LANG]} ${LANG === "zh" ? "像素封面" : "pixel cover"}"></canvas><span class="pill ${info.cls}">${info.text}</span>${isNew}${demoPill}<button type="button" class="fav-btn ${fav ? "on" : ""}" data-fav="${g.id}" aria-label="favourite">${fav ? "♥" : "♡"}</button></div>
       <div class="card-body">
         <div class="card-title">${g.title[LANG]}</div>
         <div class="card-tagline">${g.tagline[LANG]}</div>

@@ -21,6 +21,7 @@ const GAME_I18N = {
     prevGame: "上一款", nextGame: "下一款",
     favBtn: "收藏", favDone: "已收藏",
     shareBtn: "分享", shareOk: "链接已复制",
+    playDemo: "▶ 试玩 Demo",
     posterBtn: "生成海报", posterDownload: "保存图片", posterClose: "关闭",
     posterSaved: "海报已保存",
     favAdd: "已加入收藏", favRemove: "已取消收藏",
@@ -41,6 +42,7 @@ const GAME_I18N = {
     prevGame: "Previous", nextGame: "Next",
     favBtn: "Favourite", favDone: "Favourited",
     shareBtn: "Share", shareOk: "Link copied",
+    playDemo: "▶ Play Demo",
     posterBtn: "Poster", posterDownload: "Save Image", posterClose: "Close",
     posterSaved: "Poster saved",
     favAdd: "Added to favourites", favRemove: "Removed from favourites",
@@ -266,6 +268,15 @@ function renderGame() {
 
   // 收藏按钮状态
   refreshFavBtn();
+
+  // 试玩 Demo(仅标注了 demo 字段的游戏显示)
+  const demoBtn = document.getElementById("demoBtn");
+  if (game.demo) {
+    demoBtn.hidden = false;
+    demoBtn.href = "play.html?id=" + game.id;
+  } else {
+    demoBtn.hidden = true;
+  }
 
   // 上一个 / 下一个游戏(按 GAMES 顺序循环)
   const idx = GAMES.indexOf(game);
