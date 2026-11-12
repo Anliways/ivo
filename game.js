@@ -384,12 +384,13 @@ async function drawPoster() {
   c.width = W; c.height = H;
   const x = c.getContext("2d");
 
-  // 底色 + 细网格
+  // 底色 + 网格:与全站同规格(36px 单元 / 2px 线 / 0.07),
+  // 1200×630 非 36 整除,故以画布中心对称锚定,左右/上下到边框等距
   x.fillStyle = "#08080a";
   x.fillRect(0, 0, W, H);
-  x.strokeStyle = "rgba(255,255,255,0.05)";
-  for (let g = 36; g < W; g += 36) { x.beginPath(); x.moveTo(g, 0); x.lineTo(g, H); x.stroke(); }
-  for (let g = 36; g < H; g += 36) { x.beginPath(); x.moveTo(0, g); x.lineTo(W, g); x.stroke(); }
+  x.fillStyle = "rgba(255,255,255,0.07)";
+  for (let gx = (W / 2) % 36; gx < W - 8; gx += 36) x.fillRect(Math.round(gx), 0, 2, H);
+  for (let gy = (H / 2) % 36; gy < H - 8; gy += 36) x.fillRect(0, Math.round(gy), W, 2);
 
   // 顶部像素场景(与页面横幅同一 seed,视觉一致),底部渐隐过渡
   const scene = document.createElement("canvas");
