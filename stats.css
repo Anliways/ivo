@@ -1,0 +1,120 @@
+/* =====================================================
+ * IVOIncubator · 站点统计页样式
+ * ===================================================== */
+
+.stats-page {
+  padding-top: 34px;
+  padding-bottom: 60px;
+}
+
+.stats-head h1 {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+.stats-sub {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+/* ---- 收录概览 ---- */
+.stats-total {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.total-card {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+}
+.total-num {
+  font-size: 36px;
+  color: #ffd24a;
+  letter-spacing: 2px;
+}
+.total-label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+/* ---- 分布面板 ---- */
+.stats-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.stat-panel {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  padding: 20px 22px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.6);
+}
+.stat-panel h2 {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.stat-rows {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.stat-label {
+  flex: none;
+  width: 108px;
+  color: var(--text-dim);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.stat-bar {
+  flex: 1;
+  min-width: 0;
+  height: 14px;
+  background: #15151a;
+  border: 1px solid #26262e;
+}
+.stat-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  transition: width 0.5s steps(10, end);
+}
+.stat-fill.c-brand { background: var(--brand); }
+.stat-fill.c-green { background: #128a45; }
+.stat-fill.c-gold  { background: #ffd24a; }
+.stat-fill.c-pink  { background: var(--pink); }
+.stat-num {
+  flex: none;
+  width: 34px;
+  color: #ffd24a;
+}
+
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .stats-page { padding-top: 22px; }
+  .stats-total { grid-template-columns: repeat(2, 1fr); }
+  .stat-label { width: 88px; }
+  .stat-panel { padding: 16px 14px; }
+}

@@ -6,7 +6,7 @@
 /* ---------- i18n ---------- */
 const HOME_I18N = {
   zh: {
-    navDiscover: "发现", navCharts: "榜单", navCommunity: "社群", navAbout: "关于",
+    navDiscover: "发现", navCharts: "榜单", navStats: "统计", navCommunity: "社群", navAbout: "关于",
     searchPh: "搜索游戏…",
     empty: "没有找到符合条件的游戏,换个筛选试试!",
     browsePlatform: "按平台浏览", browsePrice: "按价格", tagCloud: "标签",
@@ -30,7 +30,7 @@ const HOME_I18N = {
     loadMore: "加载更多", pauseAria: "暂停轮播", playAria: "播放轮播",
   },
   en: {
-    navDiscover: "Discover", navCharts: "Charts", navCommunity: "Community", navAbout: "About",
+    navDiscover: "Discover", navCharts: "Charts", navStats: "Stats", navCommunity: "Community", navAbout: "About",
     searchPh: "Search games…",
     empty: "No games match your filters. Try something else!",
     browsePlatform: "Browse by platform", browsePrice: "By price", tagCloud: "Tags",
@@ -386,6 +386,7 @@ function applyStaticI18n() {
 /* ---- 全量渲染 ---- */
 function renderAll() {
   applyStaticI18n();
+  renderAnnounce();
   renderCarousel();
   renderGenres();
   renderTabs();
@@ -471,6 +472,26 @@ $("#searchGo").addEventListener("click", () => {
 
 /* 外链 */
 document.querySelectorAll("[data-link]").forEach((a) => { a.href = LINKS[a.dataset.link] || "#"; });
+
+/* 公告条:data.js ANNOUNCE 驱动,过期自动下线,关闭后按 id 记住不再显示 */
+function renderAnnounce() {
+  const bar = document.getElementById("announceBar");
+  if (typeof ANNOUNCE === "undefined" || !ANNOUNCE || !ANNOUNCE.id) return;
+  const expired = ANNOUNCE.until && new Date(ANNOUNCE.until + "T23:59:59") < new Date();
+  let dismissed = false;
+  try { dismissed = localStorage.getItem("ivo-ann-" + ANNOUNCE.id) === "1"; } catch (_) {}
+  const show = !expired && !dismissed;
+  bar.hidden = !show;
+  if (!show) return;
+  document.getElementById("announceText").textContent = ANNOUNCE[LANG];
+  const cta = document.getElementById("announceCta");
+  cta.textContent = LANG === "zh" ? ANNOUNCE.ctaZh : ANNOUNCE.ctaEn;
+  cta.href = ANNOUNCE.href || "#";
+}
+document.getElementById("announceClose").addEventListener("click", () => {
+  try { localStorage.setItem("ivo-ann-" + ANNOUNCE.id, "1"); } catch (_) {}
+  document.getElementById("announceBar").hidden = true;
+});
 
 /* 语言切换 */
 $("#langBtn").addEventListener("click", () => {

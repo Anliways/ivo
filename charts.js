@@ -7,7 +7,7 @@
 /* ---------- i18n ---------- */
 const CHART_I18N = {
   zh: {
-    navDiscover: "发现", navCharts: "榜单", navCommunity: "社群", navFavs: "我的收藏",
+    navDiscover: "发现", navCharts: "榜单", navStats: "统计", navCommunity: "社群", navFavs: "我的收藏",
     chartTitle: "游戏榜单",
     chartSub: "按玩家热度与评分实时排序,点击查看游戏详情",
     tabHot: "热门榜", tabRating: "评分榜", tabFresh: "新游榜", tabFree: "免费榜",
@@ -18,7 +18,7 @@ const CHART_I18N = {
     footInvest: "参与投资", footRights: "精品手机游戏之家",
   },
   en: {
-    navDiscover: "Discover", navCharts: "Charts", navCommunity: "Community", navFavs: "My Favourites",
+    navDiscover: "Discover", navCharts: "Charts", navStats: "Stats", navCommunity: "Community", navFavs: "My Favourites",
     chartTitle: "Game Charts",
     chartSub: "Ranked by player heat and ratings. Tap a row for details",
     tabHot: "Popular", tabRating: "Top Rated", tabFresh: "Fresh", tabFree: "Free",

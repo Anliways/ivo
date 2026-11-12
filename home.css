@@ -4,6 +4,61 @@
 
 .home { padding-bottom: 30px; }
 
+/* ============ 公告条 ============ */
+.announce {
+  background: rgba(79, 140, 255, 0.12);
+  border-bottom: 2px solid var(--border);
+}
+.announce-in {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.announce-dot {
+  color: var(--brand);
+  font-size: 12px;
+  animation: ann-blink 1.2s steps(2, end) infinite;
+}
+@keyframes ann-blink {
+  50% { opacity: 0.25; }
+}
+.announce-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #cfcfd6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.announce-cta {
+  flex: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--brand);
+  border: 2px solid var(--brand);
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.announce-cta:hover { background: var(--brand); color: #fff; }
+.announce-x {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-dim);
+  background: transparent;
+  border: 2px solid transparent;
+}
+.announce-x:hover { color: #fff; border-color: var(--border); }
+@media (max-width: 640px) {
+  .announce-text { white-space: normal; }
+}
+
 /* ============ 轮播 ============ */
 .carousel {
   position: relative;

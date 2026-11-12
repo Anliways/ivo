@@ -195,6 +195,10 @@
   .devlog-item { flex-direction: column; gap: 8px; }
 }
 
+/* ---- 玩家评论区 ---- */
+.comments { margin-top: 40px; }
+.giscus-mount { margin-top: 16px; }
+
 /* ---- 分享海报弹层 ---- */
 .poster-overlay {
   position: fixed;

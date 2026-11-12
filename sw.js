@@ -5,7 +5,7 @@
  * 缓存(install 预热 + 运行时回填)保证离线可打开全部页面。
  * 发新版本时把 VERSION 递增即可清掉旧缓存。
  * ===================================================== */
-const VERSION = "ivo-v2";
+const VERSION = "ivo-v3";
 const PRECACHE = [
   "./",
   "./index.html",
@@ -13,16 +13,19 @@ const PRECACHE = [
   "./favorites.html",
   "./charts.html",
   "./play.html",
+  "./stats.html",
   "./common.css",
   "./home.css",
   "./game.css",
   "./charts.css",
   "./play.css",
+  "./stats.css",
   "./data.js",
   "./home.js",
   "./game.js",
   "./charts.js",
   "./play.js",
+  "./stats.js",
   "./cursor.js",
   "./analytics.js",
   "./favorites.js",

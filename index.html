@@ -42,6 +42,7 @@
     <nav class="topnav">
       <a href="index.html" class="active" data-i18n="navDiscover">发现</a>
       <a href="charts.html" data-i18n="navCharts">榜单</a>
+      <a href="stats.html" data-i18n="navStats">统计</a>
       <a href="#community" data-i18n="navCommunity">社群</a>
       <a href="#footer" data-i18n="navAbout">关于</a>
     </nav>
@@ -56,6 +57,16 @@
     </div>
   </div>
 </header>
+
+<!-- ===== 公告条 ===== -->
+<div class="announce" id="announceBar" hidden>
+  <div class="shell announce-in">
+    <span class="announce-dot">◆</span>
+    <span class="announce-text" id="announceText"></span>
+    <a class="announce-cta" id="announceCta" href="#"></a>
+    <button class="announce-x" id="announceClose" type="button" aria-label="关闭公告">✕</button>
+  </div>
+</div>
 
 <main class="shell home">
 

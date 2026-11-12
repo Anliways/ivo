@@ -7,7 +7,7 @@
 /* ---------- i18n ---------- */
 const FAV_I18N = {
   zh: {
-    navDiscover: "发现", navCharts: "榜单", navCommunity: "社群", navFavs: "我的收藏",
+    navDiscover: "发现", navCharts: "榜单", navStats: "统计", navCommunity: "社群", navFavs: "我的收藏",
     favTitle: "我的收藏", favHint: "点击卡片右上角 ♥ 取消收藏",
     favEmpty: "还没有收藏任何游戏",
     favEmptyHint: "去首页逛逛,点卡片右上角的 ♡ 把喜欢的游戏收进来!",
@@ -21,7 +21,7 @@ const FAV_I18N = {
     footInvest: "参与投资", footRights: "精品手机游戏之家",
   },
   en: {
-    navDiscover: "Discover", navCharts: "Charts", navCommunity: "Community", navFavs: "My Favourites",
+    navDiscover: "Discover", navCharts: "Charts", navStats: "Stats", navCommunity: "Community", navFavs: "My Favourites",
     favTitle: "My Favourites", favHint: "Tap ♥ on a card to remove it",
     favEmpty: "No favourites yet",
     favEmptyHint: "Browse the homepage and tap ♡ on a card to save a game!",

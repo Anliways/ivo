@@ -11,10 +11,27 @@ const LINKS = {
   bilibili: "https://space.bilibili.com/",
 };
 
-/* 站点配置:统计 ID(留空不加载任何统计脚本)、站点域名 */
+/* 站点配置:统计 ID(留空不加载任何统计脚本)、站点域名、评论区(giscus)
+ * giscus 评论存在本仓库 GitHub Discussions;装好 https://github.com/apps/giscus 后生效 */
 const CONFIG = {
   analyticsId: "",
   siteUrl: "https://anliways.github.io/ivo",
+  giscus: {
+    repo: "Anliways/ivo",
+    repoId: "R_kgDOVp-_GA",
+    category: "Announcements",
+    categoryId: "DIC_kwDOVp-_GM4DK_Mh",
+  },
+};
+
+/* 首页公告条:置 null 或改 until 为过去日期即下线;关闭后按 id 记住不再打扰 */
+const ANNOUNCE = {
+  id: "2026-halloween",
+  zh: "🎂 万圣节活动进行中!《生存与希望》限时活动「不眠之夜」已上线",
+  en: "🎂 Halloween event live! Survival & Hope: 'Sleepless Night' is on now",
+  ctaZh: "去看看", ctaEn: "Check it out",
+  href: "game.html?id=survival-hope",
+  until: "2026-11-30",
 };
 
 /* 游戏分类 */

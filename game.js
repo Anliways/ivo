@@ -13,11 +13,11 @@ const LINKS_GAME = {
 /* ---------- i18n ---------- */
 const GAME_I18N = {
   zh: {
-    navBack: "返回首页", navCharts: "榜单", navCommunity: "社群",
+    navBack: "返回首页", navCharts: "榜单", navStats: "统计", navCommunity: "社群",
     gameLabel: "游戏名称：", platformLabel: "平台：",
     joinBtn: "一键加群", liveBtn: "跳转实况",
     moreGames: "← 浏览更多游戏",
-    relTitle: "更多同类游戏", devlogTitle: "开发日志",
+    relTitle: "更多同类游戏", devlogTitle: "开发日志", commentsTitle: "玩家评论",
     prevGame: "上一款", nextGame: "下一款",
     favBtn: "收藏", favDone: "已收藏",
     shareBtn: "分享", shareOk: "链接已复制",
@@ -34,11 +34,11 @@ const GAME_I18N = {
     platAll: "安卓 / iOS", platAndroid: "安卓", platIos: "iOS",
   },
   en: {
-    navBack: "Home", navCharts: "Charts", navCommunity: "Community",
+    navBack: "Home", navCharts: "Charts", navStats: "Stats", navCommunity: "Community",
     gameLabel: "Game: ", platformLabel: "Platform: ",
     joinBtn: "JOIN GROUP", liveBtn: "WATCH LIVE",
     moreGames: "← Browse more games",
-    relTitle: "More like this", devlogTitle: "Devlog",
+    relTitle: "More like this", devlogTitle: "Devlog", commentsTitle: "Comments",
     prevGame: "Previous", nextGame: "Next",
     favBtn: "Favourite", favDone: "Favourited",
     shareBtn: "Share", shareOk: "Link copied",
@@ -330,9 +330,39 @@ function renderGame() {
 
   // 开发日志(有内容才显示)
   renderDevlog();
+
+  // 玩家评论区(CONFIG.giscus 配置后显示)
+  renderComments();
 }
 
 /* ---------- 收藏 / 分享 / 相关推荐 ---------- */
+/* giscus 评论区:CONFIG.giscus 配置后显示;语言切换时重新注入 */
+function renderComments() {
+  const box = $("#commentBox");
+  const cfg = (typeof CONFIG !== "undefined" && CONFIG.giscus) ? CONFIG.giscus : null;
+  box.hidden = !cfg;
+  if (!cfg) return;
+  const mount = $("#giscusMount");
+  mount.innerHTML = "";
+  const s = document.createElement("script");
+  s.src = "https://giscus.app/client.js";
+  s.setAttribute("data-repo", cfg.repo);
+  s.setAttribute("data-repo-id", cfg.repoId);
+  s.setAttribute("data-category", cfg.category);
+  s.setAttribute("data-category-id", cfg.categoryId);
+  s.setAttribute("data-mapping", "url");
+  s.setAttribute("data-strict", "0");
+  s.setAttribute("data-reactions-enabled", "1");
+  s.setAttribute("data-emit-metadata", "0");
+  s.setAttribute("data-input-position", "top");
+  s.setAttribute("data-theme", "transparent_dark");
+  s.setAttribute("data-lang", LANG === "zh" ? "zh-CN" : "en");
+  s.setAttribute("data-loading", "lazy");
+  s.crossOrigin = "anonymous";
+  s.async = true;
+  mount.appendChild(s);
+}
+
 /* 开发日志:game.devlog 为空时整节隐藏 */
 function renderDevlog() {
   const box = $("#devlogBox");
