@@ -151,6 +151,77 @@
   .shots { grid-template-columns: 1fr; }
 }
 
+/* ---- 开发日志时间线 ---- */
+.devlog { margin-top: 40px; }
+.devlog-list {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.devlog-item {
+  display: flex;
+  gap: 16px;
+  background: var(--panel);
+  border: 2px solid var(--border);
+  padding: 14px 16px;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.55);
+}
+.devlog-date {
+  flex: none;
+  height: fit-content;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--brand);
+  background: #0c0c10;
+  border: 2px solid var(--border);
+  padding: 6px 8px;
+}
+.devlog-body { flex: 1; min-width: 0; }
+.devlog-item h3 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.devlog-item p {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+@media (max-width: 640px) {
+  .devlog-item { flex-direction: column; gap: 8px; }
+}
+
+/* ---- 分享海报弹层 ---- */
+.poster-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+}
+.poster-overlay.show { display: flex; }
+.poster-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+}
+.poster-wrap canvas {
+  max-width: 100%;
+  max-height: 68vh;
+  border: 2px solid var(--border);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.6);
+}
+.poster-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
 .more-row { margin-top: 30px; text-align: center; }
 
 /* ---- 上一个 / 下一个游戏 ---- */

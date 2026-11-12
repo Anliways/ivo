@@ -49,6 +49,32 @@ const GAMES = [
     hot: 100, fresh: true, free: true, soon: false,
     banner: "assets/shot-left.jpg",
     shots: ["assets/shot-left.jpg", "assets/shot-right.jpg"],
+    devlog: [
+      {
+        date: "2026-11-02",
+        title: { zh: "万圣节活动与新版优化公告", en: "Halloween event & patch notes" },
+        body: {
+          zh: "限时活动「不眠之夜」上线,同时修复了联机丢包与三处卡死问题,存档不受影响。",
+          en: "The limited-time \"Sleepless Night\" event is live, plus netcode and crash fixes. Saves unaffected.",
+        },
+      },
+      {
+        date: "2026-10-11",
+        title: { zh: "实况首播后的三件事", en: "Three things after our first stream" },
+        body: {
+          zh: "感谢来看首播的每一位!围栏耐久、雨天视野、手柄键位已列入下个版本,预计两周内推送。",
+          en: "Thanks for watching our first stream! Fence durability, rain visibility and controller remap are next.",
+        },
+      },
+      {
+        date: "2026-09-03",
+        title: { zh: "为什么做手机版「僵毁」", en: "Why a mobile Zomboid-like" },
+        body: {
+          zh: "我们想在通勤路上也能经营一个末日避难所。这个念头撑起了整个项目,现在它终于能装进口袋。",
+          en: "We wanted to run a survival shelter on our commute. That idea became this game.",
+        },
+      },
+    ],
   },
   {
     id: "stardust-farm",
@@ -60,6 +86,16 @@ const GAMES = [
     price: { type: "paid", amount: 12 },
     platforms: ["android", "ios"],
     hot: 86, fresh: false, free: false, soon: false,
+    devlog: [
+      {
+        date: "2026-10-26",
+        title: { zh: "联机种田确认开发", en: "Co-op farming confirmed" },
+        body: {
+          zh: "最多四人共享一个农场,作物与好感度分开计算。预计明年春季测试,关注社群获取资格。",
+          en: "Up to 4 players share one farm with separate progress. Spring beta planned.",
+        },
+      },
+    ],
   },
   {
     id: "abyss-echo",
@@ -159,6 +195,24 @@ const GAMES = [
     price: { type: "paid", amount: 25 },
     platforms: ["android", "ios"],
     hot: 83, fresh: true, free: false, soon: false,
+    devlog: [
+      {
+        date: "2026-11-08",
+        title: { zh: "星图扩展:新增 4 个星区", en: "Star map update: 4 new sectors" },
+        body: {
+          zh: "本次更新加入冰环星区与废弃船坞,新增 17 种可交易货物,商队上限提升到 6 艘。",
+          en: "Ice-ring sector and shipyard added, plus 17 tradeable goods. Caravan cap raised to 6.",
+        },
+      },
+      {
+        date: "2026-10-20",
+        title: { zh: "贸易系统上线", en: "Trading system launch" },
+        body: {
+          zh: "供需价格随玩家行为波动,倒卖传说货物会永久改变一个星区的经济。",
+          en: "Prices now react to player behavior; legend goods permanently shift sector economies.",
+        },
+      },
+    ],
   },
   {
     id: "steam-chef",
@@ -192,6 +246,24 @@ const GAMES = [
     price: { type: "soon" },
     platforms: ["android", "ios"],
     hot: 90, fresh: false, free: false, soon: true,
+    devlog: [
+      {
+        date: "2026-11-01",
+        title: { zh: "折纸原型完成", en: "Paper prototype done" },
+        body: {
+          zh: "用真实折纸做了 5 层地牢原型,翻页换层的手感成立了。接下来 Digitize 全部机关。",
+          en: "A real-paper prototype of 5 floors proves the page-flip feel. Next: digitize every trap.",
+        },
+      },
+      {
+        date: "2026-09-18",
+        title: { zh: "美术方向确定", en: "Art direction locked" },
+        body: {
+          zh: "手绘铅笔稿 + 像素混合风定稿,怪物死亡会碎成纸屑——回收再利用也是玩法。",
+          en: "Pencil-sketch meets pixel art locked. Monsters shred into paper scraps — and that's a mechanic.",
+        },
+      },
+    ],
   },
   {
     id: "neon-drift",
@@ -214,6 +286,16 @@ const GAMES = [
     price: { type: "paid", amount: 8 },
     platforms: ["android", "ios"],
     hot: 85, fresh: true, free: false, soon: false,
+    devlog: [
+      {
+        date: "2026-11-05",
+        title: { zh: "音频全面重制", en: "Full audio remaster" },
+        body: {
+          zh: "走廊脚步声改为动态混响,广播体操音乐成了玩家最害怕的声音——这正是我们想要的。",
+          en: "Footsteps now use dynamic reverb. The exercise broadcast is officially the scariest sound.",
+        },
+      },
+    ],
   },
   {
     id: "fox-tales",
@@ -225,6 +307,16 @@ const GAMES = [
     price: { type: "paid", amount: 30 },
     platforms: ["android", "ios"],
     hot: 74, fresh: false, free: false, soon: false,
+    devlog: [
+      {
+        date: "2026-10-30",
+        title: { zh: "百鬼设定集公开", en: "Yokai artbook reveal" },
+        body: {
+          zh: "首批 12 位山野鬼怪设定公开,每一只都有可和解的支线。美术总耗时四个月,值得。",
+          en: "First 12 yokai revealed — each has a reconcilable sidequest. Four months of art, worth it.",
+        },
+      },
+    ],
   },
   {
     id: "dino-park",

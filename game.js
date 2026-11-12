@@ -17,10 +17,12 @@ const GAME_I18N = {
     gameLabel: "游戏名称：", platformLabel: "平台：",
     joinBtn: "一键加群", liveBtn: "跳转实况",
     moreGames: "← 浏览更多游戏",
-    relTitle: "更多同类游戏",
+    relTitle: "更多同类游戏", devlogTitle: "开发日志",
     prevGame: "上一款", nextGame: "下一款",
     favBtn: "收藏", favDone: "已收藏",
     shareBtn: "分享", shareOk: "链接已复制",
+    posterBtn: "生成海报", posterDownload: "保存图片", posterClose: "关闭",
+    posterSaved: "海报已保存",
     favAdd: "已加入收藏", favRemove: "已取消收藏",
     priceFreeShort: "免费", priceSoonShort: "敬请期待",
     notifyTitle: "上线通知我", notifyPh: "输入你的邮箱", notifyBtn: "通知我",
@@ -35,10 +37,12 @@ const GAME_I18N = {
     gameLabel: "Game: ", platformLabel: "Platform: ",
     joinBtn: "JOIN GROUP", liveBtn: "WATCH LIVE",
     moreGames: "← Browse more games",
-    relTitle: "More like this",
+    relTitle: "More like this", devlogTitle: "Devlog",
     prevGame: "Previous", nextGame: "Next",
     favBtn: "Favourite", favDone: "Favourited",
     shareBtn: "Share", shareOk: "Link copied",
+    posterBtn: "Poster", posterDownload: "Save Image", posterClose: "Close",
+    posterSaved: "Poster saved",
     favAdd: "Added to favourites", favRemove: "Removed from favourites",
     priceFreeShort: "Free", priceSoonShort: "Coming Soon",
     notifyTitle: "Notify me at launch", notifyPh: "Enter your email", notifyBtn: "Notify me",
@@ -312,9 +316,28 @@ function renderGame() {
   } else {
     notifyBox.hidden = true;
   }
+
+  // 开发日志(有内容才显示)
+  renderDevlog();
 }
 
 /* ---------- 收藏 / 分享 / 相关推荐 ---------- */
+/* 开发日志:game.devlog 为空时整节隐藏 */
+function renderDevlog() {
+  const box = $("#devlogBox");
+  const list = game.devlog || [];
+  box.hidden = list.length === 0;
+  if (!list.length) return;
+  $("#devlogList").innerHTML = list.map((d) => `
+    <article class="devlog-item">
+      <span class="devlog-date">${d.date}</span>
+      <div class="devlog-body">
+        <h3>${d.title[LANG]}</h3>
+        <p>${d.body[LANG]}</p>
+      </div>
+    </article>`).join("");
+}
+
 /* 截图灯箱:overlay 只建一次;canvas 场景图在灯箱里原样重绘 */
 function openLightbox(node) {
   let lb = document.querySelector(".lightbox");
@@ -348,6 +371,117 @@ function openLightbox(node) {
   close.addEventListener("click", () => lb.classList.remove("show"));
   lb.appendChild(close);
   lb.classList.add("show");
+}
+
+/* ---------- 分享海报:canvas 绘制 1200×630,可保存 PNG ---------- */
+async function drawPoster() {
+  const title = game.title[LANG];
+  try { await document.fonts.load("72px FusionPixel", title); } catch (_) {}
+  await document.fonts.ready;
+
+  const W = 1200, H = 630;
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const x = c.getContext("2d");
+
+  // 底色 + 细网格
+  x.fillStyle = "#08080a";
+  x.fillRect(0, 0, W, H);
+  x.strokeStyle = "rgba(255,255,255,0.05)";
+  for (let g = 36; g < W; g += 36) { x.beginPath(); x.moveTo(g, 0); x.lineTo(g, H); x.stroke(); }
+  for (let g = 36; g < H; g += 36) { x.beginPath(); x.moveTo(0, g); x.lineTo(W, g); x.stroke(); }
+
+  // 顶部像素场景(与页面横幅同一 seed,视觉一致),底部渐隐过渡
+  const scene = document.createElement("canvas");
+  pixelCover(scene, game.hot + 100, paletteOf(game), W, 400);
+  x.drawImage(scene, 0, 0);
+  const shade = x.createLinearGradient(0, 280, 0, 430);
+  shade.addColorStop(0, "rgba(8,8,10,0)");
+  shade.addColorStop(1, "#08080a");
+  x.fillStyle = shade;
+  x.fillRect(0, 280, W, 150);
+
+  // 右上品牌条
+  x.textAlign = "right";
+  x.fillStyle = "rgba(8,8,10,0.72)";
+  x.fillRect(W - 320, 24, 296, 40);
+  x.fillStyle = "#4f8cff";
+  x.font = "24px FusionPixel, monospace";
+  x.fillText("IVOIncubator", W - 36, 52);
+  x.textAlign = "left";
+
+  // 标题:72px 起,放不下按 12 递减(保持像素字体锐利)
+  let size = 72;
+  x.font = size + "px FusionPixel, monospace";
+  while (x.measureText(title).width > W - 120 && size > 36) {
+    size -= 12;
+    x.font = size + "px FusionPixel, monospace";
+  }
+  x.fillStyle = "#f2f2f2";
+  x.fillText(title, 60, 500);
+
+  // 标语
+  let tag = game.tagline[LANG] || "";
+  if (tag.length > 42) tag = tag.slice(0, 41) + "…";
+  x.fillStyle = "#aaaab6";
+  x.font = "24px FusionPixel, monospace";
+  x.fillText(tag, 60, 546);
+
+  // 底部信息行:评分 + 平台(左),站点(右)
+  x.font = "24px FusionPixel, monospace";
+  x.fillStyle = "#ffd24a";
+  const rating = game.rating ? "★ " + game.rating.toFixed(1) + " / 5" : "";
+  x.fillText(rating, 60, 594);
+  const ratingW = rating ? x.measureText(rating).width + 24 : 0;
+  x.fillStyle = "#8a8a99";
+  x.fillText(t("platAll"), 60 + ratingW, 594);
+  x.fillStyle = "#5f5f6e";
+  x.textAlign = "right";
+  x.fillText((CONFIG.siteUrl || "").replace(/^https?:\/\//, ""), W - 60, 594);
+  x.textAlign = "left";
+
+  // 外边框
+  x.strokeStyle = "#26262e";
+  x.lineWidth = 8;
+  x.strokeRect(4, 4, W - 8, H - 8);
+  return c;
+}
+
+async function openPoster() {
+  const canvas = await drawPoster();
+  let ov = document.querySelector(".poster-overlay");
+  if (!ov) {
+    ov = document.createElement("div");
+    ov.className = "poster-overlay";
+    ov.innerHTML = `<div class="poster-wrap"><div class="poster-actions"></div></div>`;
+    ov.addEventListener("click", (e) => { if (e.target === ov) ov.classList.remove("show"); });
+    document.body.appendChild(ov);
+  }
+  const wrap = ov.querySelector(".poster-wrap");
+  const old = wrap.querySelector("canvas");
+  if (old) old.remove();
+  const actions = wrap.querySelector(".poster-actions");
+  wrap.insertBefore(canvas, actions);
+
+  actions.innerHTML = "";
+  const dl = document.createElement("button");
+  dl.type = "button";
+  dl.className = "btn btn-blue";
+  dl.textContent = t("posterDownload");
+  dl.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = canvas.toDataURL("image/png");
+    a.download = `ivo-${game.id}-share.png`;
+    a.click();
+    toast(t("posterSaved"));
+  });
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "btn btn-ghost";
+  close.textContent = t("posterClose");
+  close.addEventListener("click", () => ov.classList.remove("show"));
+  actions.append(dl, close);
+  ov.classList.add("show");
 }
 
 function refreshFavBtn() {
@@ -408,6 +542,10 @@ document.getElementById("shareBtn").addEventListener("click", async () => {
   } catch (_) {
     /* 用户取消分享或剪贴板不可用 */
   }
+});
+
+document.getElementById("posterBtn").addEventListener("click", () => {
+  openPoster().catch(() => {});
 });
 
 /* 上线通知订阅:暂存本地,接入后端后把此 handler 换成真实 API 即可 */
